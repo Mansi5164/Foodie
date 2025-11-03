@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Login — Foodie</title>
+  <style>
+    :root{
+      --bg:#0f1720;
+      --card:#0f1720;
+      --muted:#9aa4b2;
+      --accent:#6ee7b7;
+      --input:#111827;
+      --white:#eef2ff;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg,#071029 0%, #0b1220 100%);
+      color:var(--white);
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+    }
+
+    .card{
+      width:100%;
+      max-width:420px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      border:1px solid rgba(255,255,255,0.04);
+      border-radius:14px;
+      padding:28px;
+      box-shadow: 0 6px 30px rgba(2,6,23,0.6);
+    }
+
+    .brand{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      margin-bottom:18px;
+    }
+    .logo{
+      width:48px;height:48px;border-radius:10px;
+      background:linear-gradient(135deg,#8ee7c3,#6fc7ff);
+      display:flex;align-items:center;justify-content:center;color:#06202a;font-weight:700;
+      font-size:20px;
+    }
+    h1{margin:0;font-size:20px;letter-spacing:0.2px}
+    p.lead{margin:6px 0 18px;color:var(--muted);font-size:13px}
+
+    form{display:grid;gap:12px}
+    label{
+      display:block;font-size:13px;margin-bottom:6px;color:var(--muted);
+    }
+
+    .field{
+      position:relative;
+    }
+    input[type="email"],
+    input[type="password"]{
+      width:100%;
+      padding:12px 14px;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,0.04);
+      background:var(--input);
+      color:var(--white);
+      font-size:14px;
+      outline:none;
+      transition:box-shadow .15s, border-color .15s;
+    }
+    input::placeholder{color:#7d8792}
+    input:focus{
+      box-shadow:0 6px 20px rgba(32,178,170,0.07);
+      border-color:rgba(110,231,183,0.6);
+    }
+
+    .actions{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .remember{
+      display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);
+    }
+    .btn{
+      appearance:none;
+      border:0;padding:10px 14px;border-radius:10px;
+      font-weight:600;
+      cursor:pointer;
+    }
+    .btn-primary{
+      background:linear-gradient(90deg,#2dd4bf,#60a5fa);
+      color:#042028;
+      box-shadow: 0 8px 24px rgba(96,165,250,0.08);
+    }
+    .btn-ghost{
+      background:transparent;color:var(--muted);
+    }
+
+    .utility{
+      display:flex;justify-content:space-between;align-items:center;margin-top:6px;font-size:13px;color:var(--muted);
+    }
+
+    .foot-note{margin-top:14px;font-size:12px;color:var(--muted);text-align:center}
+
+    .pw-toggle{
+      position:absolute;
+      right:10px;
+      top:50%;
+      transform:translateY(-50%);
+      background:transparent;border:0;color:var(--muted);
+      font-size:13px;cursor:pointer;padding:6px;border-radius:8px;
+    }
+
+    @media (max-width:420px){
+      .card{padding:20px}
+      .brand h1{font-size:18px}
+    }
+
+    /* small error styling */
+    .error{
+      color:#ffb4b4;font-size:12px;margin-top:6px;
+    }
+  </style>
+</head>
+<body>
+  <main class="card" role="main" aria-labelledby="login-heading">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">FB</div>
+      <div>
+        <h1 id="login-heading">Welcome back to Foodie</h1>
+        <p class="lead">Sign in to continue to your dashboard.</p>
+      </div>
+    </div>
+
+    <form id="loginForm" action="#" method="post" novalidate>
+      <div>
+        <label for="email">Email</label>
+        <div class="field">
+          <input id="email" name="email" type="email" inputmode="email" placeholder="you@domain.com"
+                 required aria-required="true" autocomplete="username" />
+        </div>
+        <div id="emailError" class="error" aria-live="polite" style="display:none"></div>
+      </div>
+
+      <div>
+        <label for="password">Password</label>
+        <div class="field">
+          <input id="password" name="password" type="password" placeholder="Enter your password" required
+                 aria-required="true" autocomplete="current-password" minlength="6" />
+          <button type="button" class="pw-toggle" id="togglePw" aria-pressed="false" aria-label="Show password">Show</button>
+        </div>
+        <div id="pwError" class="error" aria-live="polite" style="display:none"></div>
+      </div>
+
+      <div class="actions">
+        <label class="remember">
+          <input type="checkbox" id="remember" name="remember" />
+          <span>Remember me</span>
+        </label>
+        <button type="submit" class="btn btn-primary">Sign in</button>
+      </div>
+
+      <div class="utility">
+        <a href="#" style="color:var(--muted);text-decoration:none">Forgot password?</a>
+        <a href="#" style="color:var(--muted);text-decoration:none">Create an account</a>
+      </div>
+
+      <p class="foot-note">By signing in you agree to our Terms of Service and Privacy Policy.</p>
+    </form>
+  </main>
+
+  <script>
+    const form = document.getElementById('loginForm');
+    const email = document.getElementById('email');
+    const pwd = document.getElementById('password');
+    const emailError = document.getElementById('emailError');
+    const pwError = document.getElementById('pwError');
+    const toggle = document.getElementById('togglePw');
+
+    toggle.addEventListener('click', () => {
+      const shown = pwd.type === 'text';
+      pwd.type = shown ? 'password' : 'text';
+      toggle.textContent = shown ? 'Show' : 'Hide';
+      toggle.setAttribute('aria-pressed', String(!shown));
+    });
+
+    function validateEmail(value) {
+      // simple email regex (client-side only)
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      let ok = true;
+
+      if (!email.value.trim() || !validateEmail(email.value.trim())) {
+        emailError.style.display = 'block';
+        emailError.textContent = 'Please enter a valid email address.';
+        ok = false;
+      } else {
+        emailError.style.display = 'none';
+      }
+
+      if (!pwd.value || pwd.value.length < 6) {
+        pwError.style.display = 'block';
+        pwError.textContent = 'Password must be at least 6 characters.';
+        ok = false;
+      } else {
+        pwError.style.display = 'none';
+      }
+
+      if (!ok) return;
+
+      // Replace this with real form submission (fetch/XHR) to your backend.
+      // For demo: show a quick success message then reset.
+      alert('Form validated (client-side). Submit to backend or use fetch to authenticate.');
+      // form.submit(); // uncomment to perform native submit if action is set
+    });
+
+    // Optional: simple "Enter" key accessibility (already default but keep safe)
+    email.addEventListener('keydown', (ev) => {
+      if (ev.key === 'Enter') ev.preventDefault();
+    });
+  </script>
+</body>
+</html>
